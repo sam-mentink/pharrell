@@ -1,0 +1,25 @@
+{
+  "name": "pharrell",
+  "version": "1.0.0",
+  "babel": {
+  "presets": ["es2015"]
+  },
+
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --hot --inline"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "handlebars": "^4.0.5",
+    "handlebars-loader": "^1.4.0",
+    "superagent": "^2.3.0",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.1"
+  }
+}
