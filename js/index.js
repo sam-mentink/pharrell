@@ -19,7 +19,8 @@ const getImage = () => {
         var data = res.body.response[0]
         var pharrell = {
           title: data.blog_name,
-          imageLink: data.photos[0].original_size.url
+          // imageLink: data.photos[0].original_size.url
+          imageLink: data.photos[0].alt_sizes[1].url
         }
         document.getElementById('placeholder').innerHTML=imageTemplate(pharrell)
       }

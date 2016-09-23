@@ -1,0 +1,29 @@
+body {
+  background-color: yellow;
+}
+
+h1 {
+  color: blue;
+    background-color: #00ff00;
+    align: center;
+    margin: auto;
+    width: 250px;
+}
+
+p {
+    background-color: rgb(255,0,255);
+    margin: auto;
+    width: 250px;
+}
+
+div {
+  margin: auto;
+  width: 250px;
+  /*display: block;
+  align-content: center;*/
+}
+
+p {
+  margin: auto;
+
+}
