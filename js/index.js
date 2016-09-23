@@ -1,5 +1,6 @@
 import request from 'superagent'
 import imageTemplate from '../views/image.hbs'
+import jsonp from 'superagent-jsonp'
 
 const showImage = (err, res) => {
   const placeholder = document.getElementById('placeholder')
@@ -7,18 +8,21 @@ const showImage = (err, res) => {
 }
 
 const getImage = () => {
-  var url = 'https://api.tumblr.com/v2/tagged?tag=pharrell&limit=1&api_key='
+  var url = 'http://api.tumblr.com/v2/tagged?tag=pharrell&limit=1&api_key='
   var apiKey = '7pxuuoc3Y4ogYH99D3f4dAKk94c9oV41EAaSusTdp4NUgndIh3'
   request
     .get(url+apiKey)
-    .withCredentials()
+    .use(jsonp)
     .end((err, res) => {
-      var results = JSON.parse(res.text)
-      var pharrell = {
-        title: results.response[0].summary,
-        imageLink: results.response[0].thumbnail_url
+      if (!err) {
+        console.log(res)
+        var data = res.body.response[0]
+        var pharrell = {
+          title: data.blog_name,
+          imageLink: data.photos[0].original_size.url
+        }
+        document.getElementById('placeholder').innerHTML=imageTemplate(pharrell)
       }
-      document.getElementById('placeholder').innerHTML=imageTemplate(pharrell)
     })
 }
 
