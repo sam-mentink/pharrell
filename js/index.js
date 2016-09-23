@@ -7,17 +7,24 @@ const showImage = (err, res) => {
 }
 
 const getImage = () => {
-  var url = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=pharrell&count=2";
+  var url = 'https://api.tumblr.com/v2/tagged?tag=pharrell&limit=1&api_key='
+  var apiKey = '7pxuuoc3Y4ogYH99D3f4dAKk94c9oV41EAaSusTdp4NUgndIh3'
   request
-  .get(url)
-  .end((err, res) => {
-  showImage(null, {
-    body: {
-      title: res.body.title,
-      explanation: res.body.explanation
+    .get(url+apiKey)
+    .withCredentials()
+    .end((err, res) => {
+      var results = JSON.parse(res.text)
+      var pharrell = {
+        title: results.response[0].summary,
+        imageLink: results.response[0].thumbnail_url
       }
+      document.getElementById('placeholder').innerHTML=imageTemplate(pharrell)
     })
-  })
 }
 
 document.addEventListener('DOMContentLoaded', getImage)
+
+// .select()
+// .then(function(){
+//   res.render(index, {})
+// }
